@@ -53,6 +53,8 @@ public class ListMockTest {
 		mockList.add("SomeString");
 		ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
 		verify(mockList).add(captor.capture());
+		
+		assertEquals("SomeString", captor.getValue());
 	}
 
 }
