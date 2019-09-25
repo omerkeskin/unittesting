@@ -2,6 +2,9 @@ package com.omerkeskin.unittesting.basicwork.controller;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.Arrays;
+
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
@@ -57,6 +60,24 @@ public class ItemControllerTest {
 								.andReturn();
 		
 		verify(businessService, times(1)).retrieveHardCodedItem();
+	}
+	
+	@Test
+	public void testRetrieveAllItems() throws Exception {
+		
+		when(businessService.retrieveAllItems()).thenReturn(Arrays.asList(new Item(10001, "Tag Heuer", 5000, 20),  
+				                                                          new Item(10002, "Philipe Patek", 5435300, 3),
+				                                                          new Item(10003, "Seiko", 320, 9000)));
+		
+		RequestBuilder request = MockMvcRequestBuilders.get("/all-items-from-database").
+                accept(MediaType.APPLICATION_JSON);
+
+		MvcResult result = mockMvc.perform(request)
+								.andExpect(status().isOk())
+								.andExpect(content().json("[{\"id\":10001,\"name\":\"Tag Heuer\",\"price\":5000,\"quantity\":20},{\"id\":10002,\"name\":\"Philipe Patek\",\"price\":5435300,\"quantity\":3},{\"id\":10003,\"name\":\"Seiko\",\"price\":320,\"quantity\":9000}]"))
+								.andReturn();
+		
+		verify(businessService, times(1)).retrieveAllItems();
 	}
 
 }

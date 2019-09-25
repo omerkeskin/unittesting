@@ -15,6 +15,10 @@ public class Item {
 	
 	@Transient
 	private int value;
+	
+	public Item() {
+		super();
+	}
 
 	public Item(int id, String name, int price, int quantity) {
 		this.id = id;
