@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.omerkeskin.unittesting.basicwork.model.Item;
 
+
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class IItemRepositoryTest {
