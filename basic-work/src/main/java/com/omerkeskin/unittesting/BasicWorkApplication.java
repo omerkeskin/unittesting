@@ -1,4 +1,4 @@
-package com.omerkeskin.unittesting.basicwork;
+package com.omerkeskin.unittesting;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
